@@ -20,9 +20,22 @@
 - 디바이스 조건: 전체, 데스크톱, 태블릿, 모바일
 - 페이지 조건: include/exclude path 패턴
 - 닫기 정책: 닫기 없음, 일반 닫기, 오늘 하루 닫기, 기간 닫기
-- 관리자 CRUD, 복제, 미리보기
+- 관리자 CRUD, 수정 화면 삭제, 복제, 새창 미리보기
+- 본문 HTML 에디터와 등록 화면 전체 예제 입력
 - `laravel-admin` 메뉴/권한 seeder
 - Blade include 또는 package component 기반 공개 렌더링
+
+## 표시 타입
+
+관리자가 선택하는 타입은 공개 렌더링 레이아웃에 직접 반영됩니다.
+
+| 타입 | 레이아웃 | 권장 용도 |
+|------|----------|-----------|
+| `popup` | 카드형 팝업. 기본 폭은 중간 크기이며 중앙/코너 위치를 그대로 따릅니다. 이미지는 카드 안에서 크게 표시됩니다. | 중요한 안내, 이벤트 상세, 가입 유도 |
+| `banner` | 팝업보다 넓은 가로형 배너. 이미지가 있으면 좌측 썸네일, 우측 제목/본문 형태로 표시됩니다. | 프로모션, 캠페인, 이미지 안내 |
+| `notice_bar` | 상단 또는 하단 전체 폭의 얇은 공지 바. 위치가 상단/하단이 아니면 미리보기와 공개 렌더링에서 상단 바 형태로 보정됩니다. | 점검 안내, 배송 지연, 짧은 긴급 공지 |
+
+`width`, `max_width`, `background_color`, `text_color`, `z_index` 값은 공개 렌더링 패널에 inline style로 적용됩니다. 공지 바는 전체 폭 타입이므로 `width`와 `max_width`보다 타입 레이아웃이 우선합니다.
 
 ## 설치
 
@@ -95,7 +108,9 @@ php artisan db:seed --class="Ssh521\\LaravelPopup\\Database\\Seeders\\LaravelPop
 | `/admin/popups/create` | `popup.admin.items.create` | 팝업 등록 |
 | `/admin/popups/{popup}` | `popup.admin.items.show` | 팝업 상세 |
 | `/admin/popups/{popup}/edit` | `popup.admin.items.edit` | 팝업 수정 |
-| `/admin/popups/{popup}/preview` | `popup.admin.items.preview` | 팝업 미리보기 |
+| `/admin/popups/{popup}/preview` | `popup.admin.items.preview` | 팝업 새창 미리보기 |
+
+수정 화면에는 `laravel-popup-items-delete` 권한이 있는 관리자에게 `삭제하기` 버튼이 표시됩니다. 삭제는 별도 `DELETE` 요청으로 처리되어 수정 폼과 중첩되지 않습니다.
 
 ## 공개 페이지에 삽입
 
@@ -151,6 +166,10 @@ php artisan db:seed --class="Ssh521\\LaravelPopup\\Database\\Seeders\\LaravelPop
 7. 저장 후 `미리보기`에서 공개 렌더링을 확인합니다.
 
 전체 페이지에 노출하려면 `노출 path`를 비워둡니다. 관리자 화면에는 보통 노출하지 않으므로 `제외 path`에는 `/admin/*`를 넣는 것을 권장합니다.
+
+등록 화면의 `전체 예제 입력` 버튼은 기본 정보, 콘텐츠, 노출 조건, 닫기/표시 값을 한 번에 채웁니다. 수정 화면에서는 기존 값을 실수로 덮어쓰지 않도록 이 버튼을 표시하지 않습니다. 본문은 HTML 에디터로 입력할 수 있으며, HTML 소스 모드로 직접 수정할 수도 있습니다.
+
+미리보기는 새창으로 열리며 저장된 닫기 상태를 무시합니다. 사용자가 이전에 같은 항목을 닫았더라도 관리자 미리보기에서는 항상 렌더링 결과를 확인할 수 있습니다.
 
 ## 설정
 

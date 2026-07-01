@@ -10,12 +10,13 @@
         </x-laravel-admin::admin.admin-header>
     </x-slot>
 
-    <div class="w-full bg-white px-2 py-2 dark:bg-gray-900">
-        <div class="bg-white px-4 py-6 sm:px-6 lg:px-8 dark:bg-gray-900">
-            <form method="post" action="{{ route('popup.admin.items.store') }}">
-                @csrf
-                @include('laravel-popup::admin.popups.partials.form')
-            </form>
-        </div>
-    </div>
+    <x-laravel-admin::admin.page-section title="팝업 정보 등록" description="방문자에게 노출할 팝업, 배너, 공지 바의 콘텐츠와 조건을 입력합니다." class="mx-auto max-w-5xl">
+        <form method="post" action="{{ route('popup.admin.items.store') }}">
+            @csrf
+            @include('laravel-popup::admin.popups.partials.form', [
+                'submitLabel' => '등록하기',
+                'showSampleButton' => true,
+            ])
+        </form>
+    </x-laravel-admin::admin.page-section>
 </x-laravel-admin::admin.layouts.admin>

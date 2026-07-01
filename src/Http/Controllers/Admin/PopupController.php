@@ -58,10 +58,10 @@ class PopupController extends Controller
 
     public function store(StorePopupRequest $request): RedirectResponse
     {
-        $popup = Popup::create($this->popupData($request->validated()));
+        Popup::create($this->popupData($request->validated()));
 
         return redirect()
-            ->route('popup.admin.items.edit', $popup)
+            ->route('popup.admin.items.index')
             ->with('success', '팝업 항목이 생성되었습니다.');
     }
 
@@ -86,7 +86,7 @@ class PopupController extends Controller
         $popup->update($this->popupData($request->validated()));
 
         return redirect()
-            ->route('popup.admin.items.edit', $popup)
+            ->route('popup.admin.items.index')
             ->with('success', '팝업 항목이 수정되었습니다.');
     }
 
