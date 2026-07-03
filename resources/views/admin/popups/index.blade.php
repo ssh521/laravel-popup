@@ -72,15 +72,19 @@
                                 <div class="mt-1 text-xs text-gray-500">{{ $popup->starts_at?->format('Y-m-d H:i') ?: '즉시' }} - {{ $popup->ends_at?->format('Y-m-d H:i') ?: '무기한' }}</div>
                             </td>
                             <td class="py-3 pr-4 pl-3 text-right text-sm whitespace-nowrap sm:pr-0">
-                                <x-laravel-admin::admin.action-button variant="link" size="sm" :href="route('popup.admin.items.show', $popup)" icon="eye" class="h-auto px-2 py-1">
-                                    상세보기
-                                </x-laravel-admin::admin.action-button>
-                                <x-laravel-admin::admin.action-button variant="link" size="sm" :href="route('popup.admin.items.preview', $popup)" target="_blank" rel="noopener noreferrer" icon="eye" class="h-auto px-2 py-1">
-                                    미리보기
-                                </x-laravel-admin::admin.action-button>
-                                <x-laravel-admin::admin.action-button variant="link" size="sm" :href="route('popup.admin.items.edit', $popup)" icon="pen-to-square" class="h-auto px-2 py-1">
-                                    수정하기
-                                </x-laravel-admin::admin.action-button>
+                                <div class="flex justify-end">
+                                    <x-laravel-admin::admin.action-menu>
+                                        <x-laravel-admin::admin.dropdown-link :href="route('popup.admin.items.show', $popup)" class="rounded-lg px-6 py-1 text-left text-base leading-6 !text-gray-950 hover:!bg-blue-500 hover:!text-white hover:!no-underline focus:!bg-blue-500 focus:!text-white dark:!text-gray-100">
+                                            상세보기
+                                        </x-laravel-admin::admin.dropdown-link>
+                                        <x-laravel-admin::admin.dropdown-link :href="route('popup.admin.items.preview', $popup)" target="_blank" rel="noopener noreferrer" class="rounded-lg px-6 py-1 text-left text-base leading-6 !text-gray-950 hover:!bg-blue-500 hover:!text-white hover:!no-underline focus:!bg-blue-500 focus:!text-white dark:!text-gray-100">
+                                            미리보기
+                                        </x-laravel-admin::admin.dropdown-link>
+                                        <x-laravel-admin::admin.dropdown-link :href="route('popup.admin.items.edit', $popup)" class="rounded-lg px-6 py-1 text-left text-base leading-6 !text-gray-950 hover:!bg-blue-500 hover:!text-white hover:!no-underline focus:!bg-blue-500 focus:!text-white dark:!text-gray-100">
+                                            수정하기
+                                        </x-laravel-admin::admin.dropdown-link>
+                                    </x-laravel-admin::admin.action-menu>
+                                </div>
                             </td>
                         </tr>
                     @empty
