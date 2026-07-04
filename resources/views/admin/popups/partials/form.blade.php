@@ -90,7 +90,7 @@ HTML;
         },
     }"
 >
-    <div class="my-10 border-b border-gray-900/10 md:col-span-12 dark:border-white/10"></div>
+    <div class="col-span-full h-6 sm:h-10"></div>
 
     <div class="md:col-span-4">
         <h2 class="text-base font-semibold">기본 정보</h2>
@@ -137,7 +137,7 @@ HTML;
         </div>
     </div>
 
-    <div class="my-10 border-b border-gray-900/10 md:col-span-12 dark:border-white/10"></div>
+    <div class="mt-8 mb-6 border-b border-gray-900/10 md:col-span-12 sm:my-10 dark:border-white/10"></div>
 
     <div class="md:col-span-4">
         <h2 class="text-base font-semibold">콘텐츠</h2>
@@ -185,7 +185,7 @@ HTML;
         <input type="hidden" name="link_rel" value="{{ old('link_rel', $popup->link_rel) }}">
     </div>
 
-    <div class="my-10 border-b border-gray-900/10 md:col-span-12 dark:border-white/10"></div>
+    <div class="mt-8 mb-6 border-b border-gray-900/10 md:col-span-12 sm:my-10 dark:border-white/10"></div>
 
     <div class="md:col-span-4">
         <h2 class="text-base font-semibold">노출 조건</h2>
@@ -236,7 +236,7 @@ HTML;
         </div>
     </div>
 
-    <div class="my-10 border-b border-gray-900/10 md:col-span-12 dark:border-white/10"></div>
+    <div class="mt-8 mb-6 border-b border-gray-900/10 md:col-span-12 sm:my-10 dark:border-white/10"></div>
 
     <div class="md:col-span-4">
         <h2 class="text-base font-semibold">닫기와 표시</h2>
@@ -281,7 +281,7 @@ HTML;
         </div>
     </div>
 
-    <div class="my-10 border-b border-gray-900/10 md:col-span-12 dark:border-white/10"></div>
+    <div class="mt-8 mb-6 border-b border-gray-900/10 md:col-span-12 sm:my-10 dark:border-white/10"></div>
 
     @if($showActions)
         <div class="col-span-full flex items-center justify-end gap-x-3">

@@ -5,6 +5,7 @@ namespace Ssh521\LaravelPopup\Tests\Feature;
 use Illuminate\Database\Eloquent\Collection as EloquentCollection;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Blade;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\ViewErrorBag;
 use Spatie\Permission\Models\Role;
 use Ssh521\LaravelAdmin\Models\AdminUser;
@@ -77,6 +78,21 @@ class LaravelPopupRegistrationTest extends TestCase
         }
     }
 
+    public function test_admin_popup_list_uses_shared_list_design_contract(): void
+    {
+        $index = File::get(dirname(__DIR__, 2).'/resources/views/admin/popups/index.blade.php');
+
+        $this->assertStringContainsString('x-data="{ filtersOpen: false }"', $index);
+        $this->assertStringContainsString('x-laravel-admin::admin.filter-bar', $index);
+        $this->assertStringContainsString(':mobile-toggle="false"', $index);
+        $this->assertStringContainsString('filtersOpen = ! filtersOpen', $index);
+        $this->assertStringContainsString('x-laravel-admin::admin.table-shell', $index);
+        $this->assertStringContainsString('x-laravel-admin::admin.action-menu', $index);
+        $this->assertStringContainsString('text-left text-sm font-semibold text-gray-900 sm:pl-0 md:text-center', $index);
+        $this->assertStringContainsString('font-semibold whitespace-nowrap text-gray-900', $index);
+        $this->assertStringContainsString('class="w-full shrink-0 whitespace-nowrap sm:w-auto"', $index);
+    }
+
     public function test_popup_html_editor_keeps_body_field_contract(): void
     {
         $html = Blade::render('<x-laravel-popup::admin.html-editor id="body" name="body" value="<p>안내</p>" />');
@@ -111,7 +127,8 @@ class LaravelPopupRegistrationTest extends TestCase
         $this->assertStringContainsString('전체 예제 입력', $html);
         $this->assertStringContainsString('fillSample()', $html);
         $this->assertStringContainsString('여름 프로모션 팝업', $html);
-        $this->assertStringContainsString('my-10 border-b border-gray-900/10 md:col-span-12 dark:border-white/10', $html);
+        $this->assertStringContainsString('col-span-full h-6 sm:h-10', $html);
+        $this->assertStringContainsString('mt-8 mb-6 border-b border-gray-900/10 md:col-span-12 sm:my-10 dark:border-white/10', $html);
         $this->assertStringContainsString('laravel-popup:fill-html-editor', $html);
     }
 
