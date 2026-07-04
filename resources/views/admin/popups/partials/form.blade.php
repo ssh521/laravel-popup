@@ -1,5 +1,6 @@
 @php
     $labelClass = 'block text-sm font-medium text-gray-900 dark:text-white';
+    $requiredClass = 'text-red-600 dark:text-red-400';
     $errorClass = 'mt-1 text-sm text-red-600 dark:text-red-400';
     $submitLabel = $submitLabel ?? '저장하기';
     $showSampleButton = $showSampleButton ?? false;
@@ -105,7 +106,7 @@ HTML;
     </div>
     <div class="mt-6 space-y-5 md:col-span-8 md:mt-0">
         <div>
-            <label class="{{ $labelClass }}" for="title">관리 제목</label>
+            <label class="{{ $labelClass }}" for="title">관리 제목 <span class="{{ $requiredClass }}" aria-hidden="true">*</span></label>
             <x-laravel-admin::admin.form-input id="title" name="title" value="{{ old('title', $popup->title) }}" class="mt-2" required />
             @error('title')<p class="{{ $errorClass }}">{{ $message }}</p>@enderror
         </div>
@@ -115,16 +116,16 @@ HTML;
         </div>
         <div class="grid grid-cols-1 gap-4 sm:grid-cols-3">
             <div>
-                <label class="{{ $labelClass }}" for="type">타입</label>
-                <x-laravel-admin::admin.form-select id="type" name="type" class="mt-2">
+                <label class="{{ $labelClass }}" for="type">타입 <span class="{{ $requiredClass }}" aria-hidden="true">*</span></label>
+                <x-laravel-admin::admin.form-select id="type" name="type" class="mt-2" required>
                     @foreach($types as $key => $label)
                         <option value="{{ $key }}" @selected(old('type', $popup->type) === $key)>{{ $label }}</option>
                     @endforeach
                 </x-laravel-admin::admin.form-select>
             </div>
             <div>
-                <label class="{{ $labelClass }}" for="status">상태</label>
-                <x-laravel-admin::admin.form-select id="status" name="status" class="mt-2">
+                <label class="{{ $labelClass }}" for="status">상태 <span class="{{ $requiredClass }}" aria-hidden="true">*</span></label>
+                <x-laravel-admin::admin.form-select id="status" name="status" class="mt-2" required>
                     @foreach($statuses as $key => $label)
                         <option value="{{ $key }}" @selected(old('status', $popup->status) === $key)>{{ $label }}</option>
                     @endforeach
@@ -204,16 +205,16 @@ HTML;
         </div>
         <div class="grid grid-cols-1 gap-4 sm:grid-cols-3">
             <div>
-                <label class="{{ $labelClass }}" for="device">디바이스</label>
-                <x-laravel-admin::admin.form-select id="device" name="device" class="mt-2">
+                <label class="{{ $labelClass }}" for="device">디바이스 <span class="{{ $requiredClass }}" aria-hidden="true">*</span></label>
+                <x-laravel-admin::admin.form-select id="device" name="device" class="mt-2" required>
                     @foreach($devices as $key => $label)
                         <option value="{{ $key }}" @selected(old('device', $popup->device) === $key)>{{ $label }}</option>
                     @endforeach
                 </x-laravel-admin::admin.form-select>
             </div>
             <div>
-                <label class="{{ $labelClass }}" for="position">위치</label>
-                <x-laravel-admin::admin.form-select id="position" name="position" class="mt-2">
+                <label class="{{ $labelClass }}" for="position">위치 <span class="{{ $requiredClass }}" aria-hidden="true">*</span></label>
+                <x-laravel-admin::admin.form-select id="position" name="position" class="mt-2" required>
                     @foreach($positions as $key => $label)
                         <option value="{{ $key }}" @selected(old('position', $popup->position) === $key)>{{ $label }}</option>
                     @endforeach
@@ -245,8 +246,8 @@ HTML;
     <div class="mt-6 space-y-5 md:col-span-8 md:mt-0">
         <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
             <div>
-                <label class="{{ $labelClass }}" for="close_policy">닫기 정책</label>
-                <x-laravel-admin::admin.form-select id="close_policy" name="close_policy" class="mt-2">
+                <label class="{{ $labelClass }}" for="close_policy">닫기 정책 <span class="{{ $requiredClass }}" aria-hidden="true">*</span></label>
+                <x-laravel-admin::admin.form-select id="close_policy" name="close_policy" class="mt-2" required>
                     @foreach($closePolicies as $key => $label)
                         <option value="{{ $key }}" @selected(old('close_policy', $popup->close_policy) === $key)>{{ $label }}</option>
                     @endforeach

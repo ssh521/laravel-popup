@@ -75,7 +75,7 @@
                                 <div class="flex justify-end">
                                     <x-laravel-admin::admin.action-menu>
                                         <x-laravel-admin::admin.dropdown-link :href="route('popup.admin.items.show', $popup)" class="rounded-lg px-6 py-1 text-left text-base leading-6 !text-gray-950 hover:!bg-blue-500 hover:!text-white hover:!no-underline focus:!bg-blue-500 focus:!text-white dark:!text-gray-100">
-                                            상세보기
+                                            보기
                                         </x-laravel-admin::admin.dropdown-link>
                                         <x-laravel-admin::admin.dropdown-link :href="route('popup.admin.items.preview', $popup)" target="_blank" rel="noopener noreferrer" class="rounded-lg px-6 py-1 text-left text-base leading-6 !text-gray-950 hover:!bg-blue-500 hover:!text-white hover:!no-underline focus:!bg-blue-500 focus:!text-white dark:!text-gray-100">
                                             미리보기
